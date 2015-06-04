@@ -12,33 +12,40 @@ teen = data.frame(no,brkprob,advprob)
 
 counthop = 0
 countabs = 0
+newch = "Null"
 
 #begin computation
 fch = sample(channels,1,replace = TRUE) #initialising of first channel at random
 
+for (x in 1:5){
 fm = sample(films,1,replace = TRUE)  #choosing films at random
 adv = sample(carAdverts,1,replace = TRUE) #choosing car adverts at random
-len = sample(lenfilm,1,replace = TRUE)#choosing film length at random
+fmlen = sample(lenfilm,1,replace = TRUE)#choosing film length at random
 i = sample(1:10,1,replace = TRUE)#choosing break no at random
 j = sample(1:10,1,replace = TRUE)#choosing advert no at random
 
 
-hop = ((len * teen$brkprob[i] * teen$advprob[j])/adv) + teenprob
-      if (hop > 0.5){ #0.5 is the threshold for hopping.
+hop = ((fmlen * teen$brkprob[i] * teen$advprob[j])/adv) + teenprob
+      if (hop > 0.4){ #0.5 is the threshold for hopping.
       counthop = counthop + 1
       newch = sample(channels,1,replace = TRUE) #hop to a new channel
         if (newch != fch){
-          countabs = countabs + 1
-        } 
-      
+            countabs = countabs + 1
+            fch = newch
+        }  
+          
       }
 
-
-teen$brkprob[i] 
-teen$advprob[j]
-hop
-fm
-len
-i
-fch
-adv
+print (x)
+#print (teen$brkprob[i]) 
+#print (teen$advprob[j])
+print (hop)
+#print (fm)
+#print (len)
+print (fch)
+print (newch)
+#print (adv)
+#
+}
+print (counthop)
+print (countabs)
