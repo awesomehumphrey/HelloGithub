@@ -13,10 +13,11 @@ teen = data.frame(no,brkprob,advprob)
 startpoint = 1:1000
 counthop = 0
 countabs = 0
-ansHop[startpoint] = "Null"
-ansAbs[startpoint] = "Null"
+#ansHop
+#ansAbs
 newch[startpoint] = "Null"
 fch[startpoint]
+aaa
 
 #begin computation
 fch [1] = sample(channels,1,replace = TRUE) #initialising of first channel at random
@@ -31,14 +32,18 @@ j = sample(1:10,1,replace = TRUE)#choosing advert no at random
 
 hop[x] = ((fmlen * teen$brkprob[i] * teen$advprob[j])/adv) + teenprob
       if (hop[x] > 0.5){ #0.5 is the threshold for hopping.
-      counthop = counthop + 1
-      newch[x] = sample(channels,1,replace = TRUE) #hop to a new channel
+        
+        counthop = counthop + 1
+        newch[x] = sample(channels,1,replace = TRUE) #hop to a new channel
         if (newch[x] != fch[x]){
             countabs = countabs + 1
             fch[x] = newch[x]
         }  
           
       }
+      ##else{
+      ##  ansHop[x] = "No"
+      ##}
 
 #print (x)
 #print (teen$brkprob[i]) 
@@ -53,5 +58,6 @@ hop[x] = ((fmlen * teen$brkprob[i] * teen$advprob[j])/adv) + teenprob
 }
 print (counthop)
 print (countabs)
+
 baa = data.frame(hop,fm,adv,fmlen,fch)
 #write.csv(baa,"C:/Users/Humphrey/Desktop/test.csv", col.names = FALSE)
