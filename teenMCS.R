@@ -4,6 +4,7 @@ carAdverts = c(0.03,0.06,0.09,0.12,0.15,0.19,0.20,0.22)#adverts with glue factor
 furnitureAdverts = c(0.02,0.04,0.05,0.07,0.10,0.11,0.13,0.14)
 cosmeticsAdverts = c(0.025,0.065,0.077,0.163,0.181,0.193,0.222,0.245)
 foodAdverts = c(0.01,0.075,0.08, 0.099,0.16,0.18,0.21,0.23,0.24,0.25)
+adverts = c(carAdverts,foodAdverts,cosmeticsAdverts,furnitureAdverts)
 lenfilm = c(0.31,0.31,0.27,0.27,0.27,0.22,0.22,0.22,0.18,0.18)
 
 tolerance = c(0.25,0.25,0.27,0.27,0.27,0.31,0.31,0.34,0.34,0.34,0.37,0.37,0.37,0.40,0.40,0.42,0.42,0.43,0.43,0.44) #Probability of the different classes hopping independent of other factors
@@ -27,7 +28,7 @@ for (y in 1:runs){
   len = sample(lenfilm,start,replace = TRUE)#choosing film length at random
   nbrk = sample(brkprob,start,replace = TRUE)#choosing number of breaks at random
   nadvert = sample(advprob,start,replace = TRUE)#choosing number of adverts at random
-  gluef = sample(carAdverts,start,replace = TRUE)#choosing gluefactor  at random
+  gluef = sample(adverts,start,replace = TRUE)#choosing adverts/gluefactors  at random
   
   #hopa = ((len*nbrk*nadvert)/(0.38*0.28))-0
   
@@ -50,3 +51,4 @@ for (y in 1:runs){
 #print (countabs)
 #((lenfilm[1]*brkprob[10]*advprob[10])/(teenprob*movie[3]))-carAdverts[4]
 }#end of outer for loop
+
