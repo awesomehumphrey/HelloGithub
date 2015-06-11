@@ -39,9 +39,10 @@ for (x in 1:start){
     ansHop[x] = "Yes"
     counthop = counthop + 1
     tempch[x] = fch[x]# save original channel
-    fch[x] = sample(channels,1,replace = TRUE) #hop to new channel
-    fch[x] = sample(channels,1,replace = TRUE) 
-    if (tempch[x] != fch[x]){
+    subchannels = subset(channels, channels!=tempch[x])#to ensure it hops to new channel
+    fch[x] = sample(subchannels,1,replace = TRUE) #hop to new channel
+    fch[x] = sample(channels,1,replace = TRUE) #either return or abscond
+    if (tempch[x] != fch[x]){                  #absonds
       ansAbs[x] = "Yes"
       countabs = countabs + 1
     }
